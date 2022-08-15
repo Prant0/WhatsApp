@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_ui/colors.dart';
-import 'package:whatsapp_ui/info.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:whatsapp_ui/common/widgets/loader.dart';
+import 'package:whatsapp_ui/features/auth/controller/auth_controller.dart';
+import 'package:whatsapp_ui/models/user_model.dart';
+import 'package:whatsapp_ui/widgets/brand_colors.dart';
 import 'package:whatsapp_ui/widgets/chat_list.dart';
 
-class MobileChatScreen extends StatelessWidget {
-  const MobileChatScreen({Key? key}) : super(key: key);
+class MobileChatScreen extends ConsumerWidget {
+  static const String routeName="mobileChatScreen";
+  const MobileChatScreen({Key? key,required this.uid,required this.name}) : super(key: key);
 
+  final String name;
+  final String uid;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBarColor,
-        title: Text(
-          info[0]['name'].toString(),
-        ),
-        centerTitle: false,
+        title: StreamBuilder<UserModel>(
+          stream: ref.read(authControllerProvider).userDataById(uid),
+          builder:(context, snapshot) {
+            if(snapshot.connectionState==ConnectionState.waiting){
+              return Loader();
+            }
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(name),
+                Text(snapshot.data!.isOnline?"online":"offline",style: myStyle(14,Colors.white70,FontWeight.w400),),
+
+              ],
+            );
+          }) ,
+
+
+
         actions: [
           IconButton(
             onPressed: () {},

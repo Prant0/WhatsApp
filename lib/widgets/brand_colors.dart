@@ -56,21 +56,6 @@ class BrandColors{
 }
 
 
-  const String uri = "https://apihomechef.antopolis.xyz/api/admin";
-const Color aPrimaryColor = Color(0xFFFEC61C);
-
-const primaryColor = Color(0xFF2697FF);
-const secondaryColor = Color(0xFF2A2D3E);
-const bgColor = Color(0xFF212332);
- const Color navyBlueColor= Color(0xff314579);
-const defaultPadding = 16.0;
-const Color aNavBarColor = Colors.white;
-const Color buttonColor = Color(0xFFF02E6A);
-const Color aSearchFieldColor = Color(0xFFF4F4F4);
-const Color aBackgroundColor =  Color(0xFF1A1A1A);
-
-const Color aTextColor = Color(0xFF1A1A1A);
-const Color aPriceTextColor = Color(0xFFA53034);
 
 
 

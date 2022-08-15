@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/common/widgets/custom_button.dart';
+
+import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
 import 'package:whatsapp_ui/widgets/brand_colors.dart';
 
 class LandingScreen extends StatelessWidget {
+
   const LandingScreen({Key? key}) : super(key: key);
 
-  /*void navigateToLoginScreen(BuildContext context) {
+  void navigateToLoginScreen(BuildContext context) {
     Navigator.pushNamed(context, LoginScreen.routeName);
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +22,15 @@ class LandingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 50),
-            const Text(
-              'Welcome to WhatsApp',
-              style: TextStyle(
-                fontSize: 33,
-                fontWeight: FontWeight.w600,
-              ),
+              Center(
+                child: Text(
+                'Welcome to WhatsApp',
+                style: TextStyle(
+                  fontSize: 33,
+                  fontWeight: FontWeight.w600,
+                ),
             ),
+              ),
             SizedBox(height: size.height / 9),
             Image.asset(
               'assets/bg.png',
@@ -33,11 +38,11 @@ class LandingScreen extends StatelessWidget {
               width: 340,
               color: tabColor,
             ),
-            SizedBox(height: size.height / 9),
+            SizedBox(height: 50),
             const Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                'Read our Privacy Policy. Tap "Agree and continue" to accept the Terms of Service.',
+                'Chat App (Shirajul Islam)',
                 style: TextStyle(color: greyColor),
                 textAlign: TextAlign.center,
               ),
@@ -47,8 +52,8 @@ class LandingScreen extends StatelessWidget {
               width: size.width * 0.75,
               child: CustomButton(
                 text: 'AGREE AND CONTINUE',
-              onPressed: (){},
-              //  onPressed: () => navigateToLoginScreen(context),
+             // onPressed: (){},
+                onPressed: () => navigateToLoginScreen(context),
               ),
             ),
           ],
