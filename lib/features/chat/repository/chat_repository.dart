@@ -9,9 +9,9 @@ import 'package:whatsapp_ui/models/chat_contact_model.dart';
 import 'package:whatsapp_ui/models/message_model.dart';
 import 'package:whatsapp_ui/models/user_model.dart';
 
-
-final chatRepositoryProvider=Provider((ref){
-  return ChatRepository(auth: FirebaseAuth.instance, firestore:FirebaseFirestore.instance);
+final chatRepositoryProvider = Provider((ref) {
+  return ChatRepository(
+      auth: FirebaseAuth.instance, firestore: FirebaseFirestore.instance);
 });
 
 class ChatRepository {
@@ -19,6 +19,26 @@ class ChatRepository {
   final FirebaseAuth auth;
 
   ChatRepository({required this.auth, required this.firestore});
+
+  Stream<List<ChatContactModel>> getChatContacts(){
+
+    return firestore
+        .collection("users")
+        .doc(auth.currentUser!.uid)
+        .collection("chats")
+        .snapshots().asyncMap((event) async{
+          List<ChatContactModel> contacts=[];
+          for(var document in event.docs){
+            var chatContact=ChatContactModel.fromMap(document.data());
+            var userData=await firestore.collection("users").doc(chatContact.contactId).get();
+            var user=UserModel.fromMap(userData.data()!);
+            contacts.add(ChatContactModel(name: user.name, profilePic: user.profilePic,
+                contactId:chatContact.contactId, timeSent: chatContact.timeSent, lastMessage: chatContact.lastMessage));
+          }
+          return contacts;
+    });
+
+  }
 
   void sendTextMessage({
     required BuildContext context,
