@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui/colors.dart';
 import 'package:whatsapp_ui/features/select_contacts/screens/select_contact_screen.dart';
-import 'package:whatsapp_ui/widgets/contacts_list.dart';
+import 'package:whatsapp_ui/features/chat/widgets/contacts_list.dart';
 
-class MobileLayoutScreen extends StatelessWidget {
+class MobileLayoutScreen extends StatefulWidget {
   const MobileLayoutScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MobileLayoutScreen> createState() => _MobileLayoutScreenState();
+}
+
+class _MobileLayoutScreenState extends State<MobileLayoutScreen> with WidgetsBindingObserver {
+
+
+
 
   @override
   Widget build(BuildContext context) {

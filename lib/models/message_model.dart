@@ -22,7 +22,7 @@ class MessageModel {
       "recieverId":recieverId,
       "text":text,
       "messageId":messageId,
-      "timeSend":timeSend.millisecondsSinceEpoch,
+      "timeSent":timeSend.millisecondsSinceEpoch,
       "isSeen":isSeen,
       "type":type.type,
     };
@@ -34,7 +34,7 @@ class MessageModel {
         recieverId: map["recieverId"]??"",
         text: map["text"]??"",
         messageId: map["messageId"]??"",
-        timeSend: DateTime.fromMicrosecondsSinceEpoch(map["timeSend"]),
+        timeSend: DateTime.fromMicrosecondsSinceEpoch(map["timeSent"]),
         isSeen: map["isSeen"]??false,
         type: (map["type"] as String).toEnum(),
 

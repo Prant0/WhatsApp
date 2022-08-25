@@ -145,4 +145,33 @@ class ChatRepository {
         .doc(messageId)
         .set(message.toMap());
   }
+
+
+
+  Stream<List<MessageModel>> getChatStream(String receiverUserId) {
+    return firestore
+        .collection("users")
+        .doc(auth.currentUser!.uid)
+        .collection("chats")
+        .doc(receiverUserId)
+        .collection("messages").orderBy("timeSent").snapshots().map((event){
+          List<MessageModel> messages=[];
+
+          for(var document in event.docs){
+            messages.add(MessageModel.fromMap(document.data()));
+          }
+          return messages;
+
+    });
+
+  }
+
+
+
+
+
+
+
+
+
 }
